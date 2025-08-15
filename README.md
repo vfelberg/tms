@@ -1,27 +1,42 @@
 # TMS Project
 
-A simple Kotlin project initialized with Gradle.
+A Task Management System built with Kotlin, Spring Boot, and Spring Data JPA.
 
 ## Project Structure
 
-This project follows the standard Gradle project structure:
+This project follows the standard Spring Boot project structure:
 
 ```
 tms/
-├── build.gradle.kts       # Gradle build configuration
-├── settings.gradle.kts    # Gradle settings
+├── build.gradle.kts                # Gradle build configuration
+├── settings.gradle.kts             # Gradle settings
 ├── src/
 │   ├── main/
-│   │   └── kotlin/        # Main Kotlin source files
+│   │   ├── kotlin/                 # Main Kotlin source files
+│   │   │   └── com/example/
+│   │   │       ├── controller/     # REST controllers
+│   │   │       ├── entity/         # JPA entities
+│   │   │       ├── repository/     # Spring Data repositories
+│   │   │       └── Main.kt         # Application entry point
+│   │   └── resources/
+│   │       └── application.properties # Application configuration
 │   └── test/
-│       └── kotlin/        # Test Kotlin source files
-└── .gitignore             # Git ignore file
+│       └── kotlin/                 # Test Kotlin source files
+└── .gitignore                      # Git ignore file
 ```
 
 ## Prerequisites
 
 - JDK 17 or higher
 - Gradle 8.4 or higher (or use the Gradle wrapper)
+
+## Technologies
+
+- **Kotlin**: Modern, concise JVM language
+- **Spring Boot**: Framework for building production-ready applications
+- **Spring Data JPA**: Simplifies data access with the Java Persistence API
+- **H2 Database**: In-memory database for development
+- **Spring Web**: For building RESTful APIs
 
 ## Building the Project
 
@@ -36,8 +51,37 @@ To build the project, run:
 To run the application, execute:
 
 ```bash
-./gradlew run
+./gradlew bootRun
 ```
+
+The application will start on port 8080 by default.
+
+## API Endpoints
+
+The application provides the following REST API endpoints:
+
+- `GET /api/tasks`: Get all tasks
+- `GET /api/tasks/{id}`: Get a task by ID
+- `GET /api/tasks/completed?completed=true|false`: Get completed or incomplete tasks
+- `GET /api/tasks/overdue`: Get overdue tasks
+- `GET /api/tasks/search?title=keyword`: Search tasks by title
+- `POST /api/tasks`: Create a new task
+- `PUT /api/tasks/{id}`: Update a task
+- `DELETE /api/tasks/{id}`: Delete a task
+- `PATCH /api/tasks/{id}/complete`: Mark a task as completed
+
+## H2 Console
+
+The H2 database console is enabled and available at:
+
+```
+http://localhost:8080/h2-console
+```
+
+Use the following connection details:
+- JDBC URL: `jdbc:h2:mem:tmsdb`
+- Username: `sa`
+- Password: `password`
 
 ## Running Tests
 
