@@ -9,28 +9,25 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import java.time.LocalDate
-import java.time.LocalDateTime
 
 @Entity
-@Table(name = "trades")
+@Table(name = "trade")
 data class Trade(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: String? = null,
+
+    @Column
+    val market: String, // e.g. gold, Bitcoin, DE, oil, TLT, Bund, TEM
 
     @Column
     @Enumerated(EnumType.STRING)
-    val direction: TradeDirection? = null,
-
-    @Column
-    val market: String? = null,
+    val direction: TradeDirection,
 
     @Column(name = "start_date")
-    var startDate: LocalDate? = null,
+    val startDate: LocalDate,
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    val createdAt: LocalDateTime = LocalDateTime.now(),
+    @Column(name = "end_date")
+    val endDate: LocalDate,
 
-    @Column(name = "updated_at")
-    var updatedAt: LocalDateTime = LocalDateTime.now()
 )
