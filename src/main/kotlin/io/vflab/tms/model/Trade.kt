@@ -9,13 +9,11 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import java.time.LocalDate
+import java.util.UUID
 
 @Entity
 @Table(name = "trade")
 data class Trade(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: String? = null,
 
     @Column
     val market: String, // e.g. gold, Bitcoin, DE, oil, TLT, Bund, TEM
@@ -27,7 +25,11 @@ data class Trade(
     @Column(name = "start_date")
     val startDate: LocalDate,
 
-    @Column(name = "end_date")
-    val endDate: LocalDate,
+    ) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    var id: UUID? = null
 
-)
+    @Column(name = "end_date")
+    var endDate: LocalDate? = null
+}

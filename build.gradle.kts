@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "io.vf-lab"
-version = "1.0-SNAPSHOT"
+version = "0.0.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -32,13 +32,13 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
     
     // Configure Kotlin for Spring
     sourceSets.all {
         languageSettings.apply {
-            apiVersion = "1.9"
-            languageVersion = "1.9"
+            apiVersion = "2.2"
+            languageVersion = "2.2"
         }
     }
 }

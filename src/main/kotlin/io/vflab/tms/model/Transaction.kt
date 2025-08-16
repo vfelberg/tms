@@ -10,13 +10,11 @@ import jakarta.persistence.Id
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 import java.time.Instant
+import java.util.UUID
 
 @Entity
 @Table(name = "transaction")
 class Transaction(
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    val id: String? = null,
 
     @ManyToOne
     val trade: Trade,
@@ -39,4 +37,8 @@ class Transaction(
     val priceInEuro: Double,
 
     val transactionCostInEuro: Double,
-)
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    var id: UUID? = null
+}
